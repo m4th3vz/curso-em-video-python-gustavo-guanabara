@@ -4,24 +4,22 @@ se ele quer mostrar mais alguns termos
 O programa encerra quando ele disser que quer mostrar "0 termos"
 '''
 
-prim = int(input("Primeiro termo: \n"))
-raz = int(input("Razão da PA: \n"))
+prim = int(input("Primeiro termo: "))
+raz = int(input("Razão da PA: "))
 
-counter = 1
-termo = 0
-user = -1
-tam = 10  # quantidade de loops (termos)
+termo = prim
+total = 0
+mais = 10
 
-while True:
-    while counter < tam:
+while mais != 0:
+    count = 0
+    while count < mais:
+        print(termo, end=' → ')
         termo += raz
-        counter += 1
-        print(termo)
-    user = int(input("Mais termos: \n"))
+        count += 1
+        total += 1
+    print("PAUSA")
+    mais = int(input("Quantos termos a mais? (0 para sair) "))
 
-    if user == 0:
-        break
-    user += counter
-    tam = user
+print(f"Progressão finalizada com {total} termos mostrados.")
 
-print("Fim.")

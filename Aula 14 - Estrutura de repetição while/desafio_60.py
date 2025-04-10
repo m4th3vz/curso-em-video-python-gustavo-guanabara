@@ -4,14 +4,12 @@ o seu fatorial
 exemplo: 5! = 5 * 4 * 3 * 2 * 1 = 120
 '''
 
-num = int(input("Descubra o fatorial de um número: \n"))
-counter = num
-fat = 1
+a = int(input("Digite um número: "))
+fatorial = 1
+contador = a
 
-print("Calculando {}! = ".format(num), end="")
-while counter > 0:
-    print("{}".format(counter), end="")
-    fat *= counter
-    counter -= 1
-    print(" x " if counter > 1 else " = ", end="")
-print("{}".format(fat))
+while contador > 0:
+    fatorial *= contador
+    contador -= 1
+
+print(f"O fatorial de {a} é {fatorial}")

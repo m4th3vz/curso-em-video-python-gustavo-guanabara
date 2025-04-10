@@ -7,16 +7,14 @@ No final, mostre quantos números foram digitados e qual foi a soma
 entre eles (desconsiderando o flag!)
 '''
 
-flag = False
-somador = 0
-counter = 0
+soma = 0
+digitados = 0
 
-while flag == False:
-    num = int(input("Digite um número [999 para parar]: \n"))
-    if num == 999:
-        flag = True
-    else:
-        somador += num
-        counter += 1
-print("Soma: {}.".format(somador))
-print("Números digitados: {}.".format(counter))
+while True:
+    a = int(input("Digite um número (999 para parar): "))
+    if a == 999:
+        break
+    soma += a
+    digitados += 1
+
+print(f"Você digitou {digitados} números e a soma deles é {soma}.")

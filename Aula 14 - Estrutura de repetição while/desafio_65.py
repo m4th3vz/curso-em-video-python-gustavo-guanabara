@@ -5,29 +5,27 @@ O programa deve perguntar ao usuário se ele quer ou não continuar
 a digitar valores
 '''
 
-flag = False
-counter = adder = mean = highest = lowest = 0
+numeros = []
 
-while flag == False:
-    n = int(input("Digite um número inteiro: \n"))
+while True:
+    entrada = input("Digite um número inteiro ou 'sair' para encerrar: ")
 
-    #  Média:
-    adder += n
-    counter += 1
-    mean = (adder / counter)
+    if entrada.lower() == 'sair':
+        break
 
-    #  Maior/Menor:
-    if n > highest:
-        highest = n
-    if lowest == 0:
-        lowest = n
-    if n < lowest:
-        lowest = n
+    if entrada.isdigit() or (entrada.startswith('-') and entrada[1:].isdigit()):
+        numero = int(entrada)
+        numeros.append(numero)
+    else:
+        print("Entrada inválida. Digite um número inteiro ou 'sair'.")
 
-    #  Continuação:
-    cont = str(input("Quer continuar? [SIM / NÃO] \n")).strip().upper()
-    if cont == "NÃO":
-        flag = True
-
-print("Média: {:.1f}".format(mean))
-print("Maior: {} | Menor: {}".format(highest, lowest))
+if numeros:
+    media = sum(numeros) / len(numeros)
+    maior = max(numeros)
+    menor = min(numeros)
+    print(f"\nVocê digitou {len(numeros)} números.")
+    print(f"Média: {media}")
+    print(f"Maior valor: {maior}")
+    print(f"Menor valor: {menor}")
+else:
+    print("\nNenhum número foi digitado.")
