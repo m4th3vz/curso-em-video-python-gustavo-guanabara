@@ -5,29 +5,33 @@ a) qual é o total gasto na compra
 b) quantos produtos custam mais de R$ 1000
 c) qual é o nome do produto mais barato
 '''
-cheaper_name = ""
-somador = higher = cheaper = 0
+
+nome_mais_barato = ""
+total = acima_mil = preco_mais_barato = 0
 
 while True:
-    name = str(input("Nome do produto: \n"))
-    price = float(input("Preço: \n"))
-    
-    somador += price
+    nome = input("Nome do produto: ").strip()
 
-    if price > 1000:
-        higher += 1
-    
-    if cheaper == 0:
-        cheaper = price
-        cheaper_name = name
-    elif price < cheaper:
-        cheaper = price
-        cheaper_name = name
+    try:
+        preco = float(input("Preço: R$ "))
+    except ValueError:
+        print("Preço inválido. Tente novamente.")
+        continue
 
-    choice = str(input("Inserir mais produtos? [S / N] \n")).strip().upper()
-    
-    if choice == "N":
-        print(f"Total gasto: R${somador:.2f}")
-        print(f"Produtos que custam mais do que R$1.000: {higher}")
-        print(f"O produto mais barato é {cheaper_name}, que custa R${cheaper:.2f}")
+    total += preco
+
+    if preco > 1000:
+        acima_mil += 1
+
+    if preco_mais_barato == 0 or preco < preco_mais_barato:
+        preco_mais_barato = preco
+        nome_mais_barato = nome
+
+    continuar = input("Inserir mais produtos? [S / N] ").strip().lower()
+
+    if continuar in ('n', 'nao', 'não'):
         break
+
+print(f"\nTotal gasto: R${total:.2f}")
+print(f"Produtos que custam mais do que R$1.000: {acima_mil}")
+print(f"O produto mais barato é '{nome_mais_barato}', que custa R${preco_mais_barato:.2f}")

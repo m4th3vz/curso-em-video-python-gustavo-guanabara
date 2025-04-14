@@ -9,5 +9,3 @@ print(f"Sua parede tem a dimensão {largura}x{altura} e sua área é de {area}m�
 # Cada litro (L) de tinta pinta uma área de 2m².
 tinta_necessaria = area / 2
 print(f"Para pintar essa parede, você precisará de {tinta_necessaria}L de tinta.")
-
-# Conferir a resposta porque não sei se entendi o problema. O velho Guilherme continua o mesmo, só que agora com ímpeto suficiente para continuar

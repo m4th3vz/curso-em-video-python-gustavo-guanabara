@@ -4,13 +4,14 @@ que é a condição de parada (flag).
 No final, mostre quantos números foram digitados
 e qual foi a acc entre eles (desconsiderando o flag)
 '''
-acc = counter = 0
+soma = 0
+digitados = 0
+
 while True:
-    n = int(input("Digite inteiros [999 para parar] \n"))
-    if n == 999:
+    a = int(input("Digite um número ou '999' para parar: "))
+    if a == 999:
         break
-    else:
-        counter += 1
-        acc += n
-print(f"Foram digitados {counter} números")
-print(f"A soma entre eles é: {acc}")
+    soma += a
+    digitados += 1
+
+print(f"Você digitou {digitados} números e a soma deles é {soma}.")
