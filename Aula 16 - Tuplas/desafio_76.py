@@ -7,23 +7,24 @@ No final, mostre uma listagem de precos,
 organizando os dados em forma tabular
 '''
 
-listagem = (
-    "pão", 1,
-    "leite", 3.50,
-    "frango", 10.90
-      )
+produtos = (
+    "Pão", 2.50,
+    "Leite", 4.20,
+    "Café", 8.90,
+    "Arroz", 5.60,
+    "Feijão", 6.30,
+    "Macarrão", 3.20,
+    "Açúcar", 2.80,
+    "Sal", 1.50
+)
 
-print("=" * 35)
-print("Tela preta, letra verde.")
-print("=" * 35)
+print("-" * 40)
+print(f'{"LISTAGEM DE PREÇOS":^40}')
+print("-" * 40)
 
-produto = 0
-preco = 1
+for i in range(0, len(produtos), 2):
+    nome = produtos[i]
+    preco = produtos[i + 1]
+    print(f'{nome:.<30} R$ {preco:>6.2f}')
 
-for item in range(0, len(listagem)// 2):
-    print(f"{listagem[produto]:.<30} R${listagem[preco]:>7.2f}")
-    preco += 2
-    produto += 2
-
-# Esse é o programa mais gambiarrilson que eu já fiz, 
-# mas funcionou.
+print("-" * 40)

@@ -6,20 +6,26 @@ quais são as suas vogais
 '''
 
 tupla = (
-    "Galadriel", "Luthien Tinuviel", "Erik Killmonger", 
-    "Kendrick Lamar", "Charlotte Galves", "Roberta Pires", "Amanda"
-    )
+    "algoritmo",
+    "inteligencia_artificial",
+    "nuvem",
+    "criptografia",
+    "rede",
+    "software",
+    "hardware",
+    "dados",
+    "automacao",
+    "ciberseguranca"
+)
 
-vogais = ["a", "e", "i", "o", "u"]
+vogais = "aeiouAEIOU"
 
-for nome in tupla:
-    nome = str(nome).lower()
-    lista = []
+for palavra in tupla:
+    vogais_na_palavra = []
 
-    for letra in nome:
-        for i in vogais:
-            if letra == i:
-                lista.append(letra)
+    for letra in palavra:
+        if letra in vogais:
+            vogais_na_palavra.append(letra)
 
-    print(f"{nome.capitalize()}: {lista} - {len(lista)} vogais")
-    del(lista)
+    vogais_formatadas = " ".join(vogais_na_palavra)
+    print(f"Na palavra '{palavra}' temos {vogais_formatadas}")

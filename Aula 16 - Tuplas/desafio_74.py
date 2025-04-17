@@ -4,31 +4,17 @@ e colocar em uma tupla.
 Depois disso, mostre a listagem de números gerados
 e também indice o menor e o maior valor que estão na tupla
 '''
-from random import randint
-# gerar 5 números e colocar numa tupla:
-tupla = []
-counter = 0
 
-while counter < 5:
-    tupla.append(randint(0, 100))
-    counter += 1
+import random
 
-tupla = tuple(tupla)
+lista_numeros = []
 
-# listagem de números gerados:
-print("Valores sorteados: ", end="")
-for num in tupla:
-    print(f"{num} ", end="")
+for _ in range(5):
+    numero = random.randint(1, 100)
+    lista_numeros.append(numero)
 
-# menor e maior valores:
-menor = tupla[0]
-maior = tupla[0]
+numeros = tuple(lista_numeros)
 
-for num in tupla:
-    if num < menor:
-        menor = num
-    if num > maior:
-        maior = num
-
-print(f"\nMenor: {menor}")
-print(f"Maior: {maior}")
+print(f"Os valores sorteados foram: {numeros}")
+print(f"O menor valor sorteado foi {min(numeros)}")
+print(f"O maior valor sorteado foi {max(numeros)}")

@@ -8,34 +8,40 @@ b) em que posição foi digitado o primeiro valor 3
 b) quais foram os números pares
 '''
 
-counter = 1
-tupla = []
+# Leitura dos números
+numeros = []
+for i in range(1, 5):
+    num = int(input(f"Digite o número ({i}/4): "))
+    numeros.append(num)
 
-# Ler 4 valores pelo teclado:
-while counter < 5:
-    n = int(input(f"Digite um número ({counter}/4): \n"))
-    tupla.append(n)
-    counter += 1
+# Conversão para tupla
+tupla = tuple(numeros)
 
-# guardá-los em uma tupla:
-tupla = tuple(tupla)
-print(f"Tupla: {tupla}")
+# Exibição da tupla
+print(f"\nVocê digitou os valores: {tupla}")
 
-# a) quantas vezes apareceu o valor 9
-nove = tupla.count(9)
-print(f"O valor 9 aparece {nove} vezes.")
-
-# b) em que posição foi digitado o primeiro valor 3:
-
-if 3 in tupla:
-    print(f"O primeiro 3 está na posição: {tupla.index(3)+ 1}.")
+# A) Quantas vezes apareceu o número 9
+qtd_9 = tupla.count(9)
+if qtd_9 == 1:
+    print("O número 9 apareceu 1 vez.")
 else:
-    print("O número 3 não está presente.")
-# c) quais foram os números pares:
+    print(f"O número 9 apareceu {qtd_9} vezes.")
 
+# B) Em que posição foi digitado o primeiro valor 3
+tem_tres = 3 in tupla
+if tem_tres:
+    posicao_tres = tupla.index(3) + 1  # soma 1 para ficar humano-legível
+    print(f"O número 3 aparece na {posicao_tres}ª posição.")
+else:
+    print("O número 3 não foi digitado.")
+
+# C) Quais foram os números pares
 pares = []
-for num in tupla:
-    if num % 2 == 0:
-        pares.append(num)
-print(f"Números pares: {pares}")
+for numero in tupla:
+    if numero % 2 == 0:
+        pares.append(numero)
 
+if len(pares) > 0:
+    print("Os números pares digitados foram:", pares)
+else:
+    print("Nenhum número par foi digitado.")
