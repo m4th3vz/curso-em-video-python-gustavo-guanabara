@@ -6,47 +6,40 @@ b: a soma dos valores da terceira coluna
 c: o maior valor da segunda linha
 """
 
-lista = list()
-listb = list()
+"""
+Aprimore o desafio anterior, mostrando no final:
 
+a: a soma de todos os valores pares digitados
+b: a soma dos valores da terceira coluna
+c: o maior valor da segunda linha
+"""
 
-for i in range(0, 3):  # Para cada linha
-    for j in range(0, 3):  # Para cada coluna em cada linha
-        listb.append(int(input(f"Digite um valor para [{i}, {j}]: \n")))
-
-    lista.append(listb[:])  # Copie a linha para listb
-    listb.clear()
-
-for l in lista:
-    print(l)
-
-# Resposta A: soma de todos os valores pares digitados
+listas = []  # Primeiro cria uma lista vazia
 soma = 0
 
-for i in range(3):
-    for j in range(3):
-        if lista[i][j] % 2 == 0:
-            soma += lista[i][j]
+# Agora usa o for para adicionar 9 listas vazias dentro de listas
+for _ in range(9):
+    listas.append([])
 
-print(f"Soma dos valores pares: {soma}.")
+# Agora preenche cada lista com um número
+for i in range(9):
+    num = int(input(f"Digite um número ({i+1}/9): "))
+    listas[i].append(num) # [i] percorre as 9 listas colocando dentro delas os números digitados
 
-# Reposta B: soma dos valores da terceira coluna:
-soma_coluna = 0
+    if num % 2 == 0:
+        soma += num
 
-for i in range(3):
-    for j in range(3):
-        if j == 2:  # colune 3
-            soma_coluna += lista[i][j]
-print(f"Soma terceira coluna: {soma_coluna}.")
+coluna_3 = listas[2] + listas[5] + listas[8]
+soma_coluna = sum(coluna_3)
 
-# Resposta C: o maior valor da segunda linha:
+linha_2 = listas[3] + listas[4] + listas[5]
+maior_valor = max(linha_2)
 
+# Exibe as listas organizadas em linhas de três
+print(listas[0], listas[1], listas[2])
+print(listas[3], listas[4], listas[5])
+print(listas[6], listas[7], listas[8])
 
-maior = 0
-
-for i in range(3):
-    for j in range(3):
-        if i == 1:  # linha 2
-            if lista[i][j] > maior:
-                maior = lista[i][j]
-print(f"Maior valor da segunda linha: {maior}.")
+print(f"A soma dos números pares é {soma}")
+print(f"A soma da terceira coluna é {soma_coluna}")
+print(f"O maior valor da segunda linha é {maior_valor}")

@@ -5,22 +5,26 @@ e cadastre-os em uma lista.
 Caso o número já exista lá dentro, ele não será adicionado.
 No final, serão exibidos todos os valores únicos digitados, em ordem crescente.
 '''
+
 lista = []
+
 while True:
-    num = int(input("Digite um número: \n"))
+    try:
+        num = int(input("Número: "))
+    except ValueError:
+        print("Por favor, digite um número válido.")
+        continue
+
     if num in lista:
-        print("O número já está na lista.")
+        print("Valor duplicado! Não vou adicionar.")
     else:
         lista.append(num)
-        print("Adicionado com sucesso...")
 
-    keep = str(input("Quer continuar [SIM / NÃO]? \n")).strip().upper()
-    if keep[0] == "N":
+    resposta = ''
+    while resposta not in ('s', 'n'):
+        resposta = input("Quer continuar [s/n]?: ").strip().lower()
+
+    if resposta == 'n':
         break
-    elif keep[0] == "S":
-        print("Continuando.")
-    else:
-        print("Digite apenas 'sim' ou 'não'!")
 
-lista.sort()
-print(f"Você digitou os valores {lista}!")
+print(f"Você digitou os valores {sorted(lista)}")

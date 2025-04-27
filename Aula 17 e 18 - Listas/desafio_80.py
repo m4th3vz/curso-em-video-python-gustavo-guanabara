@@ -9,24 +9,18 @@ No final, mostre a lista ordenada na tela.
 lista = []
 
 for i in range(1, 6):
-    num = int(input(f"Digite um número ({i}/5): \n"))
+    num = int(input(f"Número ({i}/5): "))
 
-    if len(lista) == 0:  # Tirando do zero.
+    if not lista:
         lista.append(num)
-        print(f"Número {num} adicionado na posição {lista.index(num)} da lista.")
-
     else:
-        if num < lista[0]:  # Número no início absoluto da lista.
-            lista.insert(0, num)
-            print(f"Número {num} adicionado no início da lista.")
-
-        elif num > lista[-1]:  # Número no final absoluto da lista.
+        inserido = False
+        for i in range(len(lista)):
+            if num < lista[i]:
+                lista.insert(i, num)
+                inserido = True
+                break
+        if not inserido:
             lista.append(num)
-            print(f"Adicionado na posição no final da lista.")
 
-        else:
-            for j in lista:
-                if num > j:
-                    lista.insert(j, num)
-        print(f"Lista ordenada parcial: {lista}.")
-
+print(lista)

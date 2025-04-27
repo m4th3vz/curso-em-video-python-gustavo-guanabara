@@ -5,69 +5,43 @@ e guarde tudo em uma lista composta.
 No final, mostre um boletim contendo a média de cada um
 e permita que o usuário possa mostrar as notas de cada aluno individualmente
 
-"""
-
-"""
 Cria um programa que lê nome e duas notas de vários alunos
 e guarda-os numa lista completa.
 """
 
-from statistics import mean
+lista = []
 
-infos_students = list()
-
-
-def get_name():
-    return input("Nome do aluno: \n")
-
-
-def get_grades(student_name):
-    grades = list()
-    counter = 1
-    grades.append(student_name)
-    while counter < 3:
-        grade = int(input(f"{counter}ª nota: \n"))
-        grades.append(grade)
-        counter += 1
-    infos_students.append(grades)
-    return infos_students
-
-
-def display_infos():
-    return infos_students
-
-
+# Parte 1: Cadastro de alunos
 while True:
-    get_grades(get_name())
-    question = input("Deseja adiciona mais um aluno? \n").lower()
-    if question[0] == "n":
-        # print(display_infos())
+    nome = input("Nome: ")
+    nota1 = float(input("Nota 1: "))
+    nota2 = float(input("Nota 2: "))
+
+    lista.append([nome, [nota1, nota2]])
+
+    continuar = input("Quer continuar? [S/N] ").strip().upper()
+    if continuar == 'N':
         break
 
-"""
-Mostra um boletim contendo a média de cada um 
-e permita que o usuário possa mostrar as notas de cada aluno individualmente
-"""
+# Parte 2: Mostrar o boletim (nome e média)
+print("\nBoletim:")
+print(f"{'No.':<4}{'Nome':<10}{'Média':>8}")
+print("-" * 25)
 
+for i, aluno in enumerate(lista):
+    media = sum(aluno[1]) / len(aluno[1])
+    print(f"{i:<4}{aluno[0]:<10}{media:>8.2f}")
 
-def calculate_mean(students_infos):
-    students_means = list()
-    new_infos = list()  # bad naming
+# Parte 3: Mostrar notas de um aluno específico
+while True:
+    opcao = int(input("\nMostrar notas de qual aluno? (Digite o número ou 999 para sair): "))
+    
+    if opcao == 999:
+        print("Finalizando...")
+        break
 
-    for item in students_infos:
-        students_means.append(item[0])
-        students_means.append(mean(item[1:]))
-        new_infos.append(students_means)
-        del students_means
-        students_means = list()
-
-    return new_infos
-
-
-def display_school_report():
-    pass
-
-
-# display_school_report(display_infos())
-
-print(calculate_mean(display_infos()))
+    if 0 <= opcao < len(lista):
+        print(f"Notas de {lista[opcao][0]} são {lista[opcao][1]}")
+    else:
+        print("Número inválido, tente novamente.")
+        

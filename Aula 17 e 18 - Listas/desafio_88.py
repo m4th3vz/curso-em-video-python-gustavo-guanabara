@@ -6,28 +6,14 @@ e vai sortear 6 números entre 1 e 60 para cada jogo,
 cadastrando tudo em uma lista composta.
 """
 
-from random import randint
+import random
 from time import sleep
 
-lista = list()
-jogos = list()
-quantidade = int(input("Quantos jogos você quer que eu sorteie? \n"))
-total = 1
+numeros = list(range(1, 61))
 
-while total <= quantidade:
-    counter = 0
-    while True:
-        number = randint(1, 60)
-        if number not in lista:
-            lista.append(number)
-            counter += 1
-        if counter >= 6:
-            break
-    lista.sort()
-    jogos.append(lista[:])
-    lista.clear()
-    total += 1
+quantidade = int(input("Quantos jogos você quer que eu sorteie?: "))
 
-for i, l in enumerate(jogos):
-    print(f"jogo {i + 1}: {l}")
-    sleep(1)
+for i in range(quantidade):
+    jogo = sorted(random.sample(numeros, 6))
+    print(f"Jogo {i + 1}: {jogo}")
+    sleep(0.5)

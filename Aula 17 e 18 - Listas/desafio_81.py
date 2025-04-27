@@ -9,22 +9,30 @@ c) se o valor 5 foi digitado e está ou não na lista.
 lista = []
 
 while True:
-    lista.append(int(input("Digite um número: \n")))
-    cont = str(input("Quer continuar? \n")).strip().upper()
-    if cont[0] == "S":
-        print("Continuando.")
-    elif cont[0] == "N":
-        print("Programa finalizado.")
+    try:
+        num = int(input("Número: "))
+        lista.append(num)
+    except ValueError:
+        print("Por favor, digite um número válido.")
+        continue
+
+    resposta = ''
+    while resposta not in ('s', 'n'):
+        resposta = input("Quer continuar [s/n]?: ").strip().lower()
+
+    if resposta == 'n':
         break
-    else:
-        print("Digite uma resposta válida.")
-
-print(f"{len(lista)} números foram digitados.")
-
-lista.sort(reverse=True)
-print(f"Esta é a lista ordenada decrescentemente {lista}")
 
 if 5 in lista:
-    print(f"O valor 5 foi digitado.")
+    print("O número 5 está na lista")
 else:
-    print("O valor 5 não foi digitado.")
+    print("O número 5 não está na lista")
+
+print(f"Foram digitados {len(lista)} números")
+
+# Usando fatiamento para inverter (não altera a lista original)
+print(f"A lista em ordem reversa é: {lista[::-1]}")
+
+# O método reverse() inverte a lista original diretamente (altera a lista in-place)
+lista.reverse()
+print(f"A ordem reversa é {lista}")

@@ -12,57 +12,40 @@ Vai depender de analisar qual é o mais leve e o mais pesado.
 Se houver mais de um com esse peso, insere na lista.
 O mais normal é que a lista de mais pesados tenha apenas 1 pessoa,
 que é o motivo pelo qual a lista existe.
-
 """
 
-lista = list()
-listb = list()
-counter = 0
+pessoas = []
+mais_pesados = []
+mais_leves = []
+maior_peso = menor_peso = 0
 
-# Atribuição dos dados nas listas:
 while True:
-    lista.append(str(input("Nome: \n")))
-    lista.append(float(input("Peso (em kg): \n")))
+    nome = input("Nome: ").strip()
+    peso = float(input("Peso (kg): "))
+    
+    pessoa = [nome, peso]
+    pessoas.append(pessoa)
 
-    listb.append(lista[:])
-    lista.clear()
-    counter += 1
+    if len(pessoas) == 1:
+        maior_peso = menor_peso = peso
+    else:
+        if peso > maior_peso:
+            maior_peso = peso
+        if peso < menor_peso:
+            menor_peso = peso
 
-    pergunta = str(input("Continuar? [Sim/Não] \n")).upper()
-    if pergunta[0] == "N":
+    continuar = input("Deseja continuar? [S/N] ").strip().upper()
+    if continuar == 'N':
         break
 
-####
+# Loop que percorre a lista 'pessoas', onde cada elemento é uma lista [nome, peso]
+for p in pessoas:
+    if p[1] == maior_peso:         # Verifica qual o nome da(s) pessoa(s) com o maior peso
+        mais_pesados.append(p[0])  # Adiciona o nome da(s) pessoa(s) que tem o maior peso na lista 'mais_pesados'
+    if p[1] == menor_peso:
+        mais_leves.append(p[0])    # Faz o mesmo para o menor peso
 
-# Resposta a):
-print(f"a) pessoas cadastradas: {counter}.")
-
-####
-
-# Breve tratamento dos dados contidos nas listas:
-
-pesos = list()  # Lista onde estarão apenas os pesos
-
-for i in listb:
-    pesos.append(i[1])
-
-pesos = sorted(pesos)  # Lista onde extrairei o maior e o menor valor.
-
-menor = pesos[0]
-maior = pesos[-1]
-
-# a) pessoas mais pesadas:
-mais_pesados = list()
-menos_pesados = list()
-
-####
-
-for k in listb:  # Para cada lista dentro de listb:
-    if k[1] == maior:  # Se o peso for igual a maior
-        mais_pesados.append(k[0])  # Adicione seu nome à lista
-    if k[1] == menor:  # Se o peso for igual a menor,
-        menos_pesados.append(k[0])  # Adicione seu nome à lista
-
-# Respostas b) e c):
-print(f" b) O maior peso foi de {maior}kg. Peso de {mais_pesados}")
-print(f" c) O menor peso foi de {menor}kg. Peso de {menos_pesados}.")
+print("\nRESULTADOS")
+print(f"A) Total de pessoas cadastradas: {len(pessoas)}")
+print(f"B) Peso máximo foi de {maior_peso:.2f}kg. Pessoa(s) com esse peso: {mais_pesados}")
+print(f"C) Peso mínimo foi de {menor_peso:.2f}kg. Pessoa(s) com esse peso: {mais_leves}")

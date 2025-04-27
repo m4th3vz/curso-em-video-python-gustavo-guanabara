@@ -5,17 +5,18 @@ e preencha com valores lidos pelo teclado.
 No final, mostre a matriz na tela com a formatação correta
 """
 
-# Declarando variáveis
-lista = list()
-listb = list()
+listas = []  # Primeiro cria uma lista vazia
 
+# Agora usa o for para adicionar 9 listas vazias dentro de listas
+for _ in range(9):
+    listas.append([])
 
-for i in range(0, 3):  # Para cada linha
-    for j in range(0, 3):  # Para cada coluna em cada linha
-        listb.append(int(input(f"Digite um valor para [{i}, {j}]: \n")))
+# Agora preenche cada lista com um número
+for i in range(9):
+    num = int(input(f"Digite um número ({i+1}/9): "))
+    listas[i].append(num) # [i] percorre as 9 listas colocando dentro delas os números digitados
 
-    lista.append(listb[:])  # Copie a linha para listb
-    listb.clear()
-
-for l in lista:
-    print(l)
+# Exibe as listas organizadas em linhas de três
+print(listas[0], listas[1], listas[2])
+print(listas[3], listas[4], listas[5])
+print(listas[6], listas[7], listas[8])

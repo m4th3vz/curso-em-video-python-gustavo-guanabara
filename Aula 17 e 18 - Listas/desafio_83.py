@@ -5,22 +5,22 @@ Seu aplicativo deverá analisar se a expressão passada
 está com os parênteses abertos e fechados na ordem correta.
 '''
 
-lista = []
-exp = str(input("Digite uma expressão: \n"))
+expressao = input("Digite uma expressão: ")
+pilha = []
 
-for simb in exp:
-    if simb == "(":
-        lista.append(simb)
-    elif simb == ")":
-        if len(lista) > 0:
-            lista.pop(-1)
+for simbolo in expressao:
+    if simbolo == "(":
+        pilha.append("(")
+    elif simbolo == ")":
+        if pilha:
+            pilha.pop()
         else:
-            lista.append(")")
+            # Fechou parêntese sem abrir
+            print("Inválido")
             break
-
-print(f"Lista: {lista}")
-
-if len(lista) == 0:
-    print("Válido")
 else:
-    print("Inválido")
+    # Só executa se o `for` terminar normalmente (sem break)
+    if not pilha:
+        print("Válido")
+    else:
+        print("Inválido")
