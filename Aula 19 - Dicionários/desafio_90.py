@@ -5,24 +5,22 @@ guardando também a situação em um dicionário.
 No final, mostre o conteúdo da estrutura na tela.
 """
 
-student_info = dict()
-situação = ""
+# Criação do dicionário
+dicionario = {}
 
-student_name = input("Nome do aluno: \n")
-student_mean = float(input(f"Média de {student_name}: \n"))
+# Coleta de dados
+dicionario['nome'] = input("Nome: ")
+dicionario['media'] = float(input(f"Média de {dicionario['nome']}: "))
 
-student_info["name"] = student_name
-student_info["mean"] = student_mean
-
-print(f"O nome é igual a {student_name}.")
-print(f"A média é igual a {student_mean}.")
-
-if student_mean >= 6:
-    situação = "aprovado"
-elif student_mean >= 4 and student_mean <= 5.9:
-    situação = "recuperação"
+# Determinando a situação
+if dicionario['media'] >= 7:
+    dicionario['situacao'] = 'Aprovado'
 else:
-    situação = "reprovado"
+    dicionario['situacao'] = 'Reprovado'
 
-print(f"Situação é igual a {situação}.")
-    
+# Exibição dos resultados
+print("-" * 30)
+print(f"Nome: {dicionario['nome']}")
+print(f"Média: {dicionario['media']}")
+print(f"Situação: {dicionario['situacao']}")
+print("-" * 30)

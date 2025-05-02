@@ -7,24 +7,24 @@ No final, coloque esse dicionário em ordem,
 sabendo que o vencedor tirou o maior número no dado
 """
 
-from random import randint
+import random
 
-players = dict()
-counter = 0
+dicionario = {}
 
-print("Valores sorteados: \n")
 for i in range(4):
-    jogada = randint(1, 6)
-    players[f"jogador {i + 1}"] = jogada
+    chave = f"Jogador{i+1}"
+    valor = random.randint(1, 6)
+    dicionario[chave] = valor
 
-    print(f"O jogador {i + 1} tirou {jogada} pontos no dado.")
+# Mostrar os resultados sorteados
+print("Resultados dos dados:")
+for jogador, valor in dicionario.items():
+    print(f"{jogador} tirou {valor}")
 
+# Ordenar os jogadores pelo valor tirado, do maior para o menor
+ranking = sorted(dicionario.items(), key=lambda item: item[1], reverse=True)
+
+# Mostrar o ranking
 print("\nRanking dos jogadores:")
-players_list = sorted(
-    list(zip(players.values(), players.keys())), reverse=True)
-
-
-for i, player in enumerate(players_list):
-    print(
-        f"{i+1}º lugar: {players_list[i][1]} com {players_list[i][0]} pontos")
-    counter += 1
+for posicao, (jogador, valor) in enumerate(ranking, start=1):
+    print(f"{posicao}º lugar: {jogador} com {valor}")

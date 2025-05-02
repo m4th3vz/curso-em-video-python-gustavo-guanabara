@@ -4,59 +4,47 @@ incluindo um sistema de visualização de detalhes de aproveitamento
 de cada jogador.
 """
 
-
-aproveitamento = dict()
-gols, soma_gols, cod = 0, 0, 0
-lista_gols, infos_jogadores = list(), list()
+time = []
 
 while True:
-    # Nome
-    aproveitamento['nome'] = input("Qual o nome do(a) jogador(a)? \n")
-    nome_jogador = aproveitamento['nome']
+    jogador = {}
+    gols_partidas = []
 
-    # Cod
-    cod += 1
-    aproveitamento['cod'] = cod
+    jogador['nome'] = input("Nome do jogador: ")
+    partidas = int(input(f"Quantas partidas {jogador['nome']} jogou?: "))
 
-    # Partidas
-    aproveitamento['partidas'] = int(input("Partidas jogadas: \n"))
-    partidas_jogadas = aproveitamento['partidas']
-    
-    # Gols
-    for partida in range(partidas_jogadas):
-        gols_partida = int(input(f"Quantos gols {nome_jogador} fez na partida {partida+1}? \n"))
-        lista_gols.append(gols_partida)
-        aproveitamento['lista_gols'] = lista_gols.copy()
+    for i in range(partidas):
+        gols = int(input(f"  Quantos gols na partida {i+1}?: "))
+        gols_partidas.append(gols)
 
-    # Soma gols
-    aproveitamento['soma_gols'] = sum(lista_gols)
-    
-    # Inserção na listona
-    infos_jogadores.append(aproveitamento.copy())
-    lista_gols.clear()
+    jogador['gols'] = gols_partidas[:]
+    jogador['total_gols'] = sum(gols_partidas)
 
-    # Continue?
-    continuar = input("Quer continuar? [S/N] \n")
-    continuar = continuar.upper()
-    if continuar[0] == "N":
+    time.append(jogador.copy())
+
+    continuar = input("Deseja continuar? [S/N]: ").strip().upper()
+    if continuar != 'S':
         break
 
-# Print da tabela com os status de todos os jogadores
-print(f"{'cod':^5} {'nome':^10} {'gols':<25} {'total':<25}")
-for jogador in infos_jogadores:
-    print(f"{jogador['cod']!s:^5s} {jogador['nome']!s:^10s} {jogador['lista_gols']!s:<25s} {jogador['soma_gols']!s:<25s}")
+print("\n" + "-"*50)
+print(f"{'Cod':<5}{'Nome':<15}{'Gols':<20}{'Total'}")
+print("-"*50)
 
-# Print das informações personalizadas de cada jogador
+for i, jogador in enumerate(time):
+    print(f"{i:<5}{jogador['nome']:<15}{str(jogador['gols']):<20}{jogador['total_gols']}")
+
+# Visualização detalhada
 while True:
-    cod_usuario = int(input("Mostrar dados de qual jogador? (999 para parar) \n"))
-
-    if cod_usuario == 999:
+    print("\nDigite o código do jogador para ver detalhes (999 para sair):")
+    cod = int(input("Código: "))
+    
+    if cod == 999:
         break
-    if cod_usuario > len(infos_jogadores):
-        print("Erro! Não existe jogador com esse código. Tente novamente!")
-    # Mostrar dados de jogador
-    for dictionary in infos_jogadores:
-        if dictionary['cod'] == cod_usuario:
-            print(f"Levantamento do jogador {dictionary['nome'].upper()}:")
-            for n, gol in enumerate(dictionary['lista_gols']):
-                print(f"No jogo {n+1}, fez {gol} gols.")
+    if cod < 0 or cod >= len(time):
+        print("Código inválido. Tente novamente.")
+    else:
+        print(f"\n--- Levantamento do jogador {time[cod]['nome']} ---")
+        for i, g in enumerate(time[cod]['gols']):
+            print(f"  → Na partida {i+1} fez {g} {'gol' if g == 1 else 'gols'}.")
+
+print("\n<< PROGRAMA ENCERRADO >>")

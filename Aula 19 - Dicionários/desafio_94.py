@@ -10,48 +10,50 @@ c. uma lista com todas as mulheres
 d. uma lista com todas as pessoas com idade acima da média.
 """
 
-person_dict = dict()
-general_info, names, names_quantity, ages, women, above_mean = list(), list(), list(), list(), list(), list()
+pessoas = []
+soma_idades = 0
 
 while True:
-    # recebe nome:
-    person_dict['name'] = input("Nome: \n")
+    pessoa = {}
+    pessoa["Nome"] = input("Nome: ")
 
-    # recebe sexo:
-    sex = input("Sexo [M/F]: \n")
-    sex = sex[0].upper()
-    person_dict['sex'] = sex
+    while True:
+        sexo = input("Sexo [M/F]: ").strip().upper()
+        if sexo in ['M', 'F']:
+            pessoa["Sexo"] = sexo
+            break
+        print("Erro! Digite apenas M ou F.")
 
-    # recebe idade:
-    person_dict['age'] = float(input("Idade: \n"))
-    
-    # insere os dicionários na lista:
-    general_info.append(person_dict.copy())
+    idade = int(input("Idade: "))
+    pessoa["Idade"] = idade
+    soma_idades += idade
 
-    # continuar ou sair?
-    leave = input("Continuar? [S/N] \n")
-    leave = leave.upper()
-    if leave[0] == "N":
+    pessoas.append(pessoa)
+
+    continuar = input("Deseja continuar? [S/N]: ").strip().upper()
+    if continuar != 'S':
         break
 
-for dictionary in general_info:
-    # a.: quantas pessoas foram cadastradas:
-    names_quantity.append(dictionary.get("name"))
+# Cálculos e separações usando for tradicional
+total_cadastradas = len(pessoas)
+media_idade = soma_idades / total_cadastradas
 
-    # b.: a média de idade do grupo:
-    ages.append(dictionary.get("age"))
-    age_mean = sum(ages)/len(ages)
+mulheres = []
+for p in pessoas:
+    if p["Sexo"] == 'F':
+        mulheres.append(p["Nome"])
 
-    # c.: uma lista com todas as mulheres:
-    for key, value in dictionary.items():
-        if value == "F":
-            women.append(dictionary.get("name"))
+acima_da_media = []
+for p in pessoas:
+    if p["Idade"] > media_idade:
+        acima_da_media.append(p)
 
-    # d.: uma lista com todas as pessoas com idade acima da média:
-    if dictionary.get("age") > (age_mean):
-        above_mean.append(dictionary.get("name"))
+# Resultados
+print("\n=== RESULTADOS ===")
+print(f"a. Total de pessoas cadastradas: {total_cadastradas}")
+print(f"b. Média de idade do grupo: {media_idade:.2f} anos")
+print(f"c. Mulheres cadastradas: {mulheres}")
 
-print(f"Pessoas cadastradas: {len(names_quantity)}")
-print(f"Idade média do grupo: {age_mean:.1f} anos.")
-print(f"Mulheres do grupo: {women}")
-print(f"Pessoas com idade acima da média: {above_mean}")
+print("d. Pessoas com idade acima da média:")
+for p in acima_da_media:
+    print(f"   - {p['Nome']} ({p['Idade']} anos)")

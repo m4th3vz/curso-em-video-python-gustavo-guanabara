@@ -6,22 +6,30 @@ No final, tudo isso será guardado em um dicionário,
 incluindo o total de gols feitos durante o campeonato.
 """
 
-aproveitamento = dict()
-gols_total = 0
+dicionario = {}
+gols_partidas = []
 
-# Nome
-aproveitamento['nome'] = input("Qual o nome do(a) jogador(a)? \n" )
+jogador = input("Qual o nome do jogador?: ")
+dicionario["nome"] = jogador
 
-# Partidas
-aproveitamento['partidas'] = int(input("Partidas jogadas: \n"))
+partidas = int(input(f"Quantas partidas {jogador} jogou?: "))
 
-# Gols em cada partida
-for partida in range(aproveitamento['partidas']):
-    gols_partida = int(input(f"Quantos gols o jogador {aproveitamento['nome']} fez na partida {partida +1}? \n"))
-    gols_total += gols_partida
-aproveitamento['gols_total'] = gols_total
+for i in range(partidas):
+    gols = int(input(f"Quantos gols na partida {i+1}?: "))
+    gols_partidas.append(gols)
 
+dicionario["gols"] = gols_partidas
+dicionario["total_gols"] = sum(gols_partidas)
 
-print(
-    f"O jogador {aproveitamento['nome']} jogou {aproveitamento['partidas']} partidas e fez um total de {aproveitamento['gols_total']} gols."
-)
+print("\nResumo do jogador:")
+print(dicionario)
+
+print(f"\nO campo nome tem o valor de {dicionario['nome']}")
+print(f"O campo gols tem o valor de {dicionario['gols']}")
+print(f"O campo total gols tem o valor de {dicionario['total_gols']}")
+
+print(f"\nO jogador {jogador} jogou {partidas} partidas.\n")
+
+print("Desempenho por partida:")
+for i, gols in enumerate(dicionario["gols"]):
+    print(f"  → Na partida {i+1}, fez {gols} {'gol' if gols == 1 else 'gols'}.")

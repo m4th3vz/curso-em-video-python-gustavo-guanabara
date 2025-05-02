@@ -9,25 +9,26 @@ a pessoa vai se aposentar.
 Obs.: aposentadoria em 35 anos de contribuição.
 """
 
-worker_infos = dict()
+from datetime import date
 
-name = input("Digite um nome: \n")
-birthday = input("Data de nascimento: \n")
-ctps = int(input("Número da carteira de trabalho (CTPS): \n"))
+dado = {}
+ano_atual = date.today().year
 
-retirement_age = int()
-age = int()
+dado["nome"] = input("Nome: ")
+ano_nascimento = int(input("Ano de nascimento: "))
+dado["idade"] = ano_atual - ano_nascimento
 
+tem_carteira = input("Tem carteira de trabalho? [S/N]: ").strip().lower()
+dado["carteira"] = tem_carteira
 
-worker_infos["name"] = name
-worker_infos["birthday"] = birthday
-worker_infos["ctps"] = ctps
-
-if ctps != 0:
-    hiring_date = input("Data de contratação: \n")
-    salary = int(input("Salário: \nR$ "))
+if tem_carteira == 's':
+    dado["contratação"] = int(input("Ano de contratação: "))
+    dado["salário"] = float(input("Salário: R$ "))
     
-    worker_infos["hiring date"] = hiring_date
-    worker_infos["salary"] = salary
+    idade_aposentadoria = (dado["contratação"] + 35) - ano_nascimento
+    dado["aposentadoria"] = idade_aposentadoria
 
-print(worker_infos)
+# Exibição formatada
+print("\n--- DADOS CADASTRADOS ---")
+for chave, valor in dado.items():
+    print(f"{chave.capitalize()}: {valor}")
