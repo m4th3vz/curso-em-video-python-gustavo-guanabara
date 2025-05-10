@@ -1,5 +1,3 @@
-from time import sleep
-
 """
 Faça um minissistema que utilize o interactive help do Python
 
@@ -10,29 +8,28 @@ Quando o usuário digitar a palavra "FIM", o programa se encerrará!.
 OBS: use cores.
 """
 
+import colorama
+from colorama import Fore
 
-def escreva(texto):
-    tamanho = len(texto) + 4
-    print("~" * tamanho)
-    print(f"  {texto}")
-    print("~" * tamanho)
+# Inicializa o colorama
+colorama.init(autoreset=True)
 
+def exibir_manual():
+    print(Fore.CYAN + "Digite o comando que deseja ver o manual ou 'FIM' para encerrar:")
 
-def pyhelp(comando):
-    help(comando)
-
-
-def default_loop():
     while True:
-        escreva("Sistema de ajuda PyHELP")
-        funcao_ou_lib = input("Função ou Biblioteca > ")
-
-        if funcao_ou_lib[0].lower() == "f":
+        comando = input(Fore.YELLOW + "> ").strip()
+        
+        if comando.upper() == "FIM":
+            print(Fore.RED + "Encerrando o programa. Até logo!")
             break
-        else:
-            # escreva(f"Acessando o manual do comando {funcao_ou_lib}")
-            # sleep(1)
-            pyhelp(funcao_ou_lib)
+        
+        try:
+            # Exibe o manual do comando
+            print(Fore.GREEN + f"\nManual do comando '{comando}':\n")
+            help(comando)
+        except Exception as e:
+            print(Fore.RED + f"\nErro: {e}. Comando não encontrado ou inválido!\n")
 
-
-default_loop()
+# Chamando a função para exibir o manual
+exibir_manual()

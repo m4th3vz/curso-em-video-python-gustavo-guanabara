@@ -5,7 +5,6 @@ e o outro chamado show, que será um valor lógico (opcional)
 indicando se será mostrado ou não na tela o processo de cálculo do fatorial.
 """
 
-
 def fatorial(num, show=False):
     """
     --> Calcula o fatorial de um número.

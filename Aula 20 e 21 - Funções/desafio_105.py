@@ -11,46 +11,43 @@ a situação (opcional)
 Adicione tambeem as docstrings da função
 """
 
-
-def notas(*args, situacao=False):
-    """Funcão para analisar notas e situações de vários alunos.
-    :param n: uma ou mais notas dos alunos (aceita várias)
-    :param situacao: valor opcional, indicando se deve ou não adicionar a situação
-    :return dicionário com várias informações sobre a situação da turma.
+def notas(*valores, situacao=False):
     """
-    infos = dict()
-    maior = menor = soma = media = 0
-    infos["total"] = len(args)  # total
+    Calcula estatísticas sobre as notas de uma turma.
 
-    for nota in args:  # maior
-        if nota == 0:
-            maior = nota
-        if nota > maior:
-            maior = nota
-    infos["maior"] = maior
+    Parâmetros:
+    - *valores (float): uma ou mais notas dos alunos.
+    - situacao (bool): valor opcional. Se True, adiciona a situação da turma com base na média.
 
-    for nota in args:  # menor
-        menor = nota
-        if nota < menor:
-            menor = nota
-    infos["menor"] = menor
+    Retorna:
+    dict: um dicionário com:
+        - total (int): quantidade de notas recebidas
+        - maior (float): a maior nota
+        - menor (float): a menor nota
+        - media (float): a média das notas
+        - situacao (str, opcional): 'Boa', 'Razoável' ou 'Ruim', dependendo da média
+    """
+    if not valores:
+        return {"erro": "Nenhuma nota foi informada."}
 
-    for nota in args:
-        soma += nota
-    infos["media"] = soma / infos["total"]
+    resultado = {}
+    resultado['total'] = len(valores)
+    resultado['maior'] = max(valores)
+    resultado['menor'] = min(valores)
+    resultado['media'] = sum(valores) / len(valores)
 
     if situacao:
-        if infos["media"] < 6:
-            infos["situacao"] = "RUIM"
-        elif infos["media"] <= 7:
-            infos["situacao"] = "BOM"
-        elif infos["media"] >= 9:
-            infos["situacao"] = "ÓTIMO"
-    else:
-        pass
-    return infos
+        media = resultado['media']
+        if media >= 7:
+            resultado['situacao'] = 'Boa'
+        elif media >= 5:
+            resultado['situacao'] = 'Razoável'
+        else:
+            resultado['situacao'] = 'Ruim'
+
+    return resultado
 
 
-# Programa principal:
-resp = notas(5.5, 2.5, 1.5, situacao=True)
-print(resp)
+# Exemplo de uso:
+resposta = notas(8.5, 6.0, 7.5, 9.0, situacao=True)
+print(resposta)

@@ -7,21 +7,13 @@ ex.:
 n = leia_int("Digite um n")
 """
 
-
-def leia_int(entrada_usuario):
-    is_ok = False
-    value = None
+def leia_int(mensagem):
     while True:
-        numero = input(f"{entrada_usuario} \n")
-        if numero.isnumeric():
-            value = numero
-            is_ok = True
+        entrada = input(mensagem)
+        if entrada.strip().lstrip('-').isdigit():
+            return int(entrada)
         else:
             print("\033[0;31mERRO! Digite um número inteiro válido!\033[m")
-        if is_ok:
-            break
-    return value
 
-
-n = leia_int("Digite um número:")
-print(f"Você acabou de digitar o número: {n}.")
+n = leia_int("Digite um número: ")
+print(f"Você digitou o número {n}.")
