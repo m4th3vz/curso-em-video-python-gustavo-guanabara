@@ -1,0 +1,22 @@
+# Arquivos de ambiente
+.env
+
+# Bytecode do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de log
+*.log
+
+# Configurações do VSCode (se usar)
+.vscode/
+
+# Arquivos temporários de sistema
+.DS_Store
+Thumbs.db
+
+# Pastas de virtualenv
+venv/
+env/
